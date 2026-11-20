@@ -72,6 +72,10 @@ export interface Progreso {
   porcentaje: number
 }
 
+// En Render el frontend y la API viven en dominios distintos: VITE_API_URL
+// (sin barra final) se define en el build. Vacío = mismo origen (Vite/Nginx).
+const API_BASE = ((import.meta.env.VITE_API_URL as string | undefined) ?? '').replace(/\/$/, '')
+
 export class ApiError extends Error {}
 
 export function errorMessage(e: unknown): string {
@@ -81,7 +85,7 @@ export function errorMessage(e: unknown): string {
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   let response: Response
   try {
-    response = await fetch(`/api${path}`, {
+    response = await fetch(`${API_BASE}/api${path}`, {
       headers: { 'Content-Type': 'application/json' },
       ...init,
     })

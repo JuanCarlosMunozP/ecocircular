@@ -17,10 +17,12 @@ services:
     envVars:
       - key: NODE_VERSION
         value: 22
+      - key: VITE_API_URL
+        value: https://ecocircular-api-dfgu.onrender.com
     routes:
       - type: rewrite
         source: /api/*
-        destination: https://ecocircular-api.onrender.com/api/*
+        destination: https://ecocircular-api-dfgu.onrender.com/api/*
       - type: rewrite
         source: /*
         destination: /index.html

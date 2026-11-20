@@ -1,3 +1,5 @@
+import os
+
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -23,6 +25,8 @@ app = FastAPI(title="EcoCircular API", version="0.1.0")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    # Frontends desplegados en Render (la API no usa cookies ni autenticación).
+    allow_origin_regex=os.environ.get("CORS_ORIGIN_REGEX", r"https://[a-z0-9-]+\.onrender\.com"),
     allow_methods=["*"],
     allow_headers=["*"],
 )
