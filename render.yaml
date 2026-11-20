@@ -1,0 +1,26 @@
+services:
+  # API FastAPI (Docker)
+  - type: web
+    name: ecocircular-api
+    runtime: docker
+    rootDir: backend
+    plan: free
+    healthCheckPath: /api/salud
+
+  # Frontend estatico (Vite). /api/* se reenvia a la API, igual que Nginx/Vite.
+  - type: web
+    name: ecocircular
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+    routes:
+      - type: rewrite
+        source: /api/*
+        destination: https://ecocircular-api.onrender.com/api/*
+      - type: rewrite
+        source: /*
+        destination: /index.html

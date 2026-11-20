@@ -1,0 +1,9 @@
+
+!.env.example
+*.log
+.env
+__pycache__/
+backend/venv/
+frontend/certs/
+frontend/dist/
+node_modules/

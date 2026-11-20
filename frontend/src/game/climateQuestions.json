@@ -1,0 +1,106 @@
+[
+  {
+    "id": "clima_001",
+    "categoria": "Cambio climático",
+    "pregunta": "¿Qué describe mejor el cambio climático?",
+    "opciones": [
+      "Cambios duraderos en los patrones del clima",
+      "Un día frío en una ciudad",
+      "La llegada de una sola nube",
+      "El cambio de estación durante una semana"
+    ],
+    "respuestaCorrecta": 0,
+    "explicacion": "El clima se observa durante periodos largos. Un día frío o caluroso es tiempo atmosférico, no demuestra por sí solo un cambio del clima."
+  },
+  {
+    "id": "clima_002",
+    "categoria": "Calentamiento global",
+    "pregunta": "¿A qué se refiere el calentamiento global?",
+    "opciones": [
+      "Al aumento de la temperatura media del planeta",
+      "A que todos los lugares tienen la misma temperatura",
+      "A que desaparecen las estaciones",
+      "Al calor de un solo día"
+    ],
+    "respuestaCorrecta": 0,
+    "explicacion": "El calentamiento global es el aumento de la temperatura media de la Tierra observado a largo plazo."
+  },
+  {
+    "id": "clima_003",
+    "categoria": "Gases de efecto invernadero",
+    "pregunta": "¿Qué hacen los gases de efecto invernadero en la atmósfera?",
+    "opciones": [
+      "Retienen parte del calor; en exceso intensifican el calentamiento",
+      "Eliminan todo el calor del planeta",
+      "Impiden que exista vida en la Tierra",
+      "Solo se producen en los volcanes"
+    ],
+    "respuestaCorrecta": 0,
+    "explicacion": "El efecto invernadero natural permite una temperatura habitable. El aumento de gases por actividades humanas atrapa calor adicional."
+  },
+  {
+    "id": "clima_004",
+    "categoria": "Reciclaje y emisiones",
+    "pregunta": "¿Cómo puede ayudar el reciclaje cuando un material sí tiene una ruta de aprovechamiento?",
+    "opciones": [
+      "Puede reducir la necesidad de materias primas nuevas en algunos procesos",
+      "Elimina completamente la contaminación",
+      "Hace que ya no debamos reducir el consumo",
+      "Siempre evita todas las emisiones"
+    ],
+    "respuestaCorrecta": 0,
+    "explicacion": "Recuperar materiales puede evitar parte de la extracción y fabricación de materiales nuevos, aunque no elimina por completo las emisiones."
+  },
+  {
+    "id": "clima_005",
+    "categoria": "Consumo responsable",
+    "pregunta": "¿Cuál acción ayuda a reducir residuos desde el origen?",
+    "opciones": [
+      "Elegir algo durable y usarlo por más tiempo",
+      "Comprar más cosas de un solo uso",
+      "Botar un objeto apenas cambia de apariencia",
+      "Usar más empaques aunque no sean necesarios"
+    ],
+    "respuestaCorrecta": 0,
+    "explicacion": "Reducir compras innecesarias y alargar la vida de los objetos evita generar residuos y demandar materiales antes de tiempo."
+  },
+  {
+    "id": "clima_006",
+    "categoria": "Biodiversidad",
+    "pregunta": "¿Por qué es importante cuidar la biodiversidad?",
+    "opciones": [
+      "Los seres vivos y sus relaciones ayudan a mantener ecosistemas saludables",
+      "Todas las especies cumplen exactamente la misma función",
+      "La biodiversidad solo es importante en lugares lejanos",
+      "Los ecosistemas no dependen de plantas ni animales"
+    ],
+    "respuestaCorrecta": 0,
+    "explicacion": "Las especies se relacionan entre sí y con su entorno. Cuidar sus hábitats favorece ecosistemas de los que también dependemos."
+  },
+  {
+    "id": "clima_007",
+    "categoria": "Ecosistemas",
+    "pregunta": "¿Qué acción ayuda a proteger un ecosistema cercano?",
+    "opciones": [
+      "Evitar arrojar residuos y cuidar las fuentes de agua",
+      "Dejar empaques en quebradas o zonas verdes",
+      "Retirar plantas y animales de su hábitat",
+      "Quemar residuos al aire libre"
+    ],
+    "respuestaCorrecta": 0,
+    "explicacion": "Disponer adecuadamente los residuos y cuidar el agua reduce presiones sobre los hábitats y los seres vivos."
+  },
+  {
+    "id": "clima_008",
+    "categoria": "Mitigación y adaptación",
+    "pregunta": "¿Cuál opción relaciona correctamente mitigación y adaptación?",
+    "opciones": [
+      "Mitigar reduce las causas; adaptarse ayuda a enfrentar impactos",
+      "Ambas significan ignorar los cambios del clima",
+      "Adaptarse elimina todos los gases de efecto invernadero",
+      "Mitigar significa prepararse solo para días fríos"
+    ],
+    "respuestaCorrecta": 0,
+    "explicacion": "Mitigar significa reducir emisiones o aumentar su captura. Adaptarse es prepararse para los efectos del clima y disminuir sus daños."
+  }
+]
