@@ -5,6 +5,7 @@ import { defineConfig } from 'vite'
 
 const hasCerts = fs.existsSync('./certs/key.pem') && fs.existsSync('./certs/cert.pem')
 
+// Despliegue en Render: VITE_API_URL apunta a la API en el build.
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {

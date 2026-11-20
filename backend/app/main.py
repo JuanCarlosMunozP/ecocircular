@@ -19,6 +19,7 @@ from .schemas import (
 )
 from .store import ResultadoGuardado, store
 
+# Despliegue en Render: la API escucha en el puerto de la variable PORT.
 app = FastAPI(title="EcoCircular API", version="0.1.0")
 
 # CORS: permite que el frontend (Vite, puerto 5173) llame a esta API.
