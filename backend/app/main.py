@@ -79,12 +79,12 @@ def _estrellas(porcentaje: int) -> int:
 
 
 # ---------- Endpoints ----------
-@app.get("/api/salud")
+@app.get("/admin/salud")
 def salud() -> dict[str, str]:
     return {"estado": "ok"}
 
 
-@app.get("/api/niveles", response_model=list[NivelOut])
+@app.get("/admin/niveles", response_model=list[NivelOut])
 def listar_niveles(jugador_id: JugadorId = Query(...)) -> list[NivelOut]:
     """Niveles con sus misiones y el estado (bloqueada/completada) del jugador."""
     progreso = store.obtener(jugador_id)
@@ -118,7 +118,7 @@ def listar_niveles(jugador_id: JugadorId = Query(...)) -> list[NivelOut]:
     return niveles
 
 
-@app.get("/api/misiones/{mision_id}", response_model=MisionDetalle)
+@app.get("/admin/misiones/{mision_id}", response_model=MisionDetalle)
 def obtener_mision(mision_id: str, jugador_id: JugadorId = Query(...)) -> MisionDetalle:
     """Inicia una partida: sortea los residuos (en orden aleatorio) y los recuerda.
 
@@ -140,13 +140,13 @@ def obtener_mision(mision_id: str, jugador_id: JugadorId = Query(...)) -> Mision
     )
 
 
-@app.post("/api/clasificar", response_model=ClasificacionOut)
+@app.post("/admin/clasificar", response_model=ClasificacionOut)
 def clasificar(respuesta: RespuestaIn) -> ClasificacionOut:
     """Retroalimentación inmediata para UN residuo (sirve mientras se juega)."""
     return _clasificar(respuesta.residuo_id, respuesta.contenedor_id)
 
 
-@app.post("/api/misiones/{mision_id}/completar", response_model=MisionResultado)
+@app.post("/admin/misiones/{mision_id}/completar", response_model=MisionResultado)
 def completar_mision(mision_id: str, cuerpo: CompletarMisionIn) -> MisionResultado:
     """Califica todas las respuestas de la misión y guarda el progreso."""
     mision = _mision_o_404(mision_id)
@@ -208,7 +208,7 @@ def completar_mision(mision_id: str, cuerpo: CompletarMisionIn) -> MisionResulta
     )
 
 
-@app.get("/api/progreso/{jugador_id}", response_model=ProgresoOut)
+@app.get("/admin/progreso/{jugador_id}", response_model=ProgresoOut)
 def obtener_progreso(jugador_id: JugadorId) -> ProgresoOut:
     progreso = store.obtener(jugador_id)
     completadas = sum(1 for r in progreso.values() if r.aprobada)
@@ -223,6 +223,6 @@ def obtener_progreso(jugador_id: JugadorId) -> ProgresoOut:
     )
 
 
-@app.delete("/api/progreso/{jugador_id}", status_code=204)
+@app.delete("/admin/progreso/{jugador_id}", status_code=204)
 def reiniciar_progreso(jugador_id: JugadorId) -> None:
     store.reiniciar(jugador_id)

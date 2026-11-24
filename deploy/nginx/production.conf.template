@@ -46,7 +46,7 @@ server {
         add_header Content-Type text/plain;
     }
 
-    location /api/ {
+    location /admin/ {
         proxy_pass http://backend:8000;
         proxy_http_version 1.1;
         proxy_set_header Host $host;

@@ -17,10 +17,10 @@ export default defineConfig({
           cert: fs.readFileSync('./certs/cert.pem'),
         }
       : undefined,
-    // El front llama a "/api/..." y Vite lo reenvía al backend FastAPI.
+    // El front llama a "/admin/..." y Vite lo reenvía al backend FastAPI.
     // Así no hay problemas de CORS y no se escribe la URL del backend en el código.
     proxy: {
-      '/api': 'http://localhost:8000',
+      '/admin': 'http://localhost:8000',
     },
   },
 })

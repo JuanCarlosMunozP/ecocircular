@@ -18,7 +18,7 @@ Documentación interactiva: http://localhost:8000/docs
 La imagen de producción se construye desde `Dockerfile` y utiliza
 `requirements-prod.txt`. En el despliegue Compose de la raíz, FastAPI solo es
 accesible desde la red privada de Docker; Nginx es el punto de entrada público
-y reenvía `/api/` al backend. Consulta [../README.md](../README.md) para
+y reenvía `/admin/` al backend. Consulta [../README.md](../README.md) para
 configurar el dominio, HTTPS y la renovación de certificados.
 
 ## Pruebas
@@ -29,12 +29,12 @@ configurar el dominio, HTTPS y la renovación de certificados.
 ## Endpoints
 | Método | Ruta | Para qué |
 |---|---|---|
-| GET | `/api/niveles?jugador_id=` | Niveles y misiones con su estado (bloqueada, estrellas…) |
-| GET | `/api/misiones/{id}?jugador_id=` | **Inicia una partida**: sortea los residuos (orden aleatorio, sin respuestas) |
-| POST | `/api/clasificar` | Feedback inmediato de un residuo |
-| POST | `/api/misiones/{id}/completar` | Califica la partida en curso, guarda progreso, desbloquea la siguiente |
-| GET | `/api/progreso/{jugador_id}` | Puntaje, estrellas y % (barra de la pantalla de inicio) |
-| DELETE | `/api/progreso/{jugador_id}` | Reinicia el progreso |
+| GET | `/admin/niveles?jugador_id=` | Niveles y misiones con su estado (bloqueada, estrellas…) |
+| GET | `/admin/misiones/{id}?jugador_id=` | **Inicia una partida**: sortea los residuos (orden aleatorio, sin respuestas) |
+| POST | `/admin/clasificar` | Feedback inmediato de un residuo |
+| POST | `/admin/misiones/{id}/completar` | Califica la partida en curso, guarda progreso, desbloquea la siguiente |
+| GET | `/admin/progreso/{jugador_id}` | Puntaje, estrellas y % (barra de la pantalla de inicio) |
+| DELETE | `/admin/progreso/{jugador_id}` | Reinicia el progreso |
 
 ## Reglas
 - Las misiones se juegan en orden; se desbloquea la siguiente al aprobar (≥ 60 % de aciertos).

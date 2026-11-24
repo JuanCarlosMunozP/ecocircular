@@ -8,7 +8,7 @@ progreso temporal del jugador.
 ## Despliegue Docker con HTTPS
 
 El despliegue usa dos contenedores de aplicación: FastAPI y Nginx. Nginx sirve
-el frontend, enruta `/api/` al backend en la red privada de Docker y redirige
+el frontend, enruta `/admin/` al backend en la red privada de Docker y redirige
 HTTP a HTTPS. Certbot obtiene y renueva certificados de Let's Encrypt.
 
 El nombre elegido para el proyecto es `ecocircular-obonuco.edu.co`. Su

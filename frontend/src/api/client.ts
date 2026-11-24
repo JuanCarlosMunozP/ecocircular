@@ -85,7 +85,7 @@ export function errorMessage(e: unknown): string {
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   let response: Response
   try {
-    response = await fetch(`${API_BASE}/api${path}`, {
+    response = await fetch(`${API_BASE}/admin${path}`, {
       headers: { 'Content-Type': 'application/json' },
       ...init,
     })

@@ -14,7 +14,7 @@ def setup_function() -> None:
 
 def iniciar(mision_id: str) -> list[str]:
     """Inicia una partida y devuelve los residuos que sorteó el servidor."""
-    r = client.get(f"/api/misiones/{mision_id}", params={"jugador_id": J})
+    r = client.get(f"/admin/misiones/{mision_id}", params={"jugador_id": J})
     assert r.status_code == 200
     return [x["id"] for x in r.json()["residuos"]]
 
@@ -36,13 +36,13 @@ def respuestas_incorrectas(mision_id: str) -> list[dict]:
 
 def completar(mision_id: str, respuestas: list[dict]):
     return client.post(
-        f"/api/misiones/{mision_id}/completar",
+        f"/admin/misiones/{mision_id}/completar",
         json={"jugador_id": J, "respuestas": respuestas},
     )
 
 
 def test_niveles_solo_primera_mision_desbloqueada():
-    niveles = client.get("/api/niveles", params={"jugador_id": J}).json()
+    niveles = client.get("/admin/niveles", params={"jugador_id": J}).json()
     assert [n["numero"] for n in niveles] == [1, 2, 3]
     assert niveles[0]["desbloqueado"] is True
     assert niveles[1]["desbloqueado"] is False
@@ -51,19 +51,19 @@ def test_niveles_solo_primera_mision_desbloqueada():
 
 
 def test_mision_no_expone_respuestas():
-    r = client.get("/api/misiones/n1m1", params={"jugador_id": J}).json()
+    r = client.get("/admin/misiones/n1m1", params={"jugador_id": J}).json()
     assert all(set(x) == {"id", "nombre"} for x in r["residuos"])
 
 
 def test_mision_bloqueada():
-    r = client.get("/api/misiones/n1m2", params={"jugador_id": J})
+    r = client.get("/admin/misiones/n1m2", params={"jugador_id": J})
     assert r.status_code == 403
 
 
 def test_clasificar_correcto_e_incorrecto():
-    ok = client.post("/api/clasificar", json={"residuo_id": "botella_gaseosa", "contenedor_id": "plastico"}).json()
+    ok = client.post("/admin/clasificar", json={"residuo_id": "botella_gaseosa", "contenedor_id": "plastico"}).json()
     assert ok["correcto"] is True
-    mal = client.post("/api/clasificar", json={"residuo_id": "botella_gaseosa", "contenedor_id": "papel"}).json()
+    mal = client.post("/admin/clasificar", json={"residuo_id": "botella_gaseosa", "contenedor_id": "papel"}).json()
     assert mal["correcto"] is False and mal["contenedor_correcto"] == "plastico"
 
 
@@ -71,13 +71,13 @@ def test_completar_perfecto_desbloquea_siguiente():
     r = completar("n1m1", respuestas_correctas("n1m1")).json()
     assert r["estrellas"] == 3 and r["aprobada"] and r["puntaje"] == 40
     assert r["siguiente_mision"] == "n1m2"
-    assert client.get("/api/misiones/n1m2", params={"jugador_id": J}).status_code == 200
+    assert client.get("/admin/misiones/n1m2", params={"jugador_id": J}).status_code == 200
 
 
 def test_reprobar_no_desbloquea():
     r = completar("n1m1", respuestas_incorrectas("n1m1")).json()
     assert r["aprobada"] is False and r["siguiente_mision"] is None
-    assert client.get("/api/misiones/n1m2", params={"jugador_id": J}).status_code == 403
+    assert client.get("/admin/misiones/n1m2", params={"jugador_id": J}).status_code == 403
 
 
 def test_sin_responder_cuenta_como_error():
@@ -131,12 +131,12 @@ def test_el_orden_y_los_residuos_varian():
 def test_progreso_conserva_mejor_resultado():
     completar("n1m1", respuestas_correctas("n1m1"))
     completar("n1m1", respuestas_incorrectas("n1m1"))  # un intento peor no debe bajar el puntaje
-    p = client.get(f"/api/progreso/{J}").json()
+    p = client.get(f"/admin/progreso/{J}").json()
     assert p["puntaje_total"] == 40 and p["misiones_completadas"] == 1 and p["porcentaje"] == 20
 
 
 def test_jugador_id_invalido():
-    assert client.get("/api/progreso/hola mundo!").status_code == 422
+    assert client.get("/admin/progreso/hola mundo!").status_code == 422
 
 
 def test_ganar_el_juego_al_aprobar_todas_las_misiones():
