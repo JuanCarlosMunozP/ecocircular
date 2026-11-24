@@ -7,3 +7,6 @@ backend/venv/
 frontend/certs/
 frontend/dist/
 node_modules/
+
+# Plantilla de entorno (local, no se sube)
+.env.example
